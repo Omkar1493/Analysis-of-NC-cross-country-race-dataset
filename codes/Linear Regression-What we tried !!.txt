@@ -1,0 +1,115 @@
+Research Paper  --> 
+https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Multiple_Regression_with_Serial_Correlation.pdf
+
+Here we tried to run regression as 'time' with 'error' as a factor although we were not sure if that was the right way.
+We came to know of it when we read the above research paepr but it was too mathematical and hence we left this method
+aswe didnt have enough time.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+ds1 <- read.csv("FinalTest2.csv")
+
+ds1$Days_Bet_Races[ds1$Days_Bet_Races > 100]<- 11
+
+
+
+ds1$Dew_Point_Celc<-as.numeric(as.character(ds1$Dew_Point_Celc))
+
+ds1$Temp_Celcius<-as.numeric(as.character(ds1$Temp_Celcius))
+
+
+
+library("data.table")
+
+ds1
+
+x<-data.table(ds1$Elevation,ds1$class_status_num
+
+      ,ds1$Dew_Point_Celc,ds1$Temp_Celcius)
+
+summary(z1)
+
+#newdata<-data.frame(c(ds$Dew_Point_Celc,ds$Temp_Celcius,
+
+#                     ds$Elevation,ds$Days_Bet_Races,ds$class_status_num))
+
+
+
+p<-predict(z1,data.frame("ds1$Dew_Point_Celc","ds1$Temp_Celcius","ds1$Elevation"
+
+ data.t                       ,"ds1$Days_Bet_Races","ds1$class_status_num"))
+
+p
+
+ds1
+
+ds1$predicted_values1<-p
+
+x
+
+
+
+y<-ds1
+
+tmp <- cbind(ds1, ds1$predicted_values1)
+
+write.csv(tmp, "FinalTest2.csv")
+
+write.csv(tmp,
+
+          write.table(p,file="C:/Users/Omkar/Desktop/FinalTest.csv")
+
+          ds1 <- read.csv("C:/Users/Omkar/Desktop/FinalTest2.csv")
+
+          p_error1<-ds1$time_sec-ds1$predicted_values1
+
+          tmp1<-cbind(ds1,p_error1)
+
+          write.csv(tmp1,"FInalTest2.csv")
+
+          ds1 <- read.csv("C:/Users/Omkar/Desktop/FinalTest2.csv")
+
+          #ds1$predicted_values1<-as.integer(ds1$predicted_values1)
+
+          
+
+          y<-ds1$time_sec
+
+          x<-ds1$p_error1
+
+          plot(x,
+
+               y,
+
+               main = "actual vs error rate",
+
+               xlab = "error",
+
+               ylab = "Time in sec")
+
+          
+
+          t<-lm(ds1$time_sec~ds1$p_error1)
+
+          summary(t)
+
+          abline(t)
+
+          newdata=data.frame(x=-96)
+
+          predict[.lm]
+
+          
+
+          
+
+          p<-predict(t,newdata)
+
+          p
+
+          newdata=data.frame(ds1$p_error1)
+
+          p<-predict(t,newdata)
+
+          p
